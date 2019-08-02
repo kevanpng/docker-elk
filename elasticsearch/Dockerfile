@@ -14,5 +14,8 @@ RUN elasticsearch-plugin install --batch com.floragunn:search-guard-7:${ELK_VERS
 	&& chown -R elasticsearch config/sg/ \
 	&& chmod -R go= config/sg/
 
+RUN echo ${JAVA_HOME}
+RUN which java
+
 # Add your elasticsearch plugins setup here
 # Example: RUN elasticsearch-plugin install analysis-icu
