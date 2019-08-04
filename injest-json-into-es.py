@@ -23,16 +23,24 @@ es = Elasticsearch(
     http_auth=user_pass
 )
 
-i = 1
 FINDINGS_FILE_NAME = 'findings_sandbox_201908041629.json'
 FINDINGS_FILE = os.path.join(ROOT_DIR, FINDINGS_FILE_NAME)
 
 with open(FINDINGS_FILE, 'r') as f:
-    findings = f.read()
+    findings_json = f.read()
+    findings_obj = json.loads(findings_json)
+    findings = findings_obj['findings']
 
     # send data to es
-    result = es.index(
-        index='myindex', ignore=400,
-        id=i, body=json.loads(findings)
-    )
-    logger.info(result)
+    i = 1
+    for finding in findings:
+        try:
+            result = es.index(
+                index='myindex', ignore=400,
+                id=i, body=finding
+            )
+        except Exception as e:
+            logger.info(f'finding is {finding}')
+            logger.exception(e)
+        logger.info(result)
+        i += 1
