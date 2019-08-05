@@ -26,6 +26,7 @@ es = Elasticsearch(
 FINDINGS_FILE_NAME = 'findings_sandbox_201908041629.json'
 FINDINGS_FILE = os.path.join(ROOT_DIR, FINDINGS_FILE_NAME)
 
+# TODO this file is not used in favour of elastic-loader.
 with open(FINDINGS_FILE, 'r') as f:
     findings_json = f.read()
     findings_obj = json.loads(findings_json)
