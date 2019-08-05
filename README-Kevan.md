@@ -1,5 +1,6 @@
 
 load the entire 1GB of findings into elastic search. no errors
+https://discuss.elastic.co/t/loading-many-big-json-files-into-elasticsearch/128078/13
 
 ```
 pipenv run elasticsearch_loader  --http-auth elastic:changeme --index incidents --type incident json findings_clean
