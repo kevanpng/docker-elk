@@ -25,21 +25,7 @@ es = Elasticsearch(
     http_auth=user_pass
 )
 
-settings = {
-    "settings": {
-        "number_of_shards": 1,
-        "number_of_replicas": 0
-    },
-    "mappings": {
-        "urls": {
-            "properties": {
-                "url": {
-                    "type": "string"
-                }
-            }
-        }
-     }
-}
+# https://www.elastic.co/guide/en/elasticsearch/reference/current/removal-of-types.html
 
 # how to link code repo to webserver? unless they give us their deployment file
 # need to generate a json file of some items that can be put into elasticsearch
@@ -103,6 +89,7 @@ if __name__ == '__main__':
     findings = [web_scan_finding, code_scan_finding, cloud_scan_finding]
     # send data to es
     i = 1
+    es.indices.create(index='findings', body=settings)
     for finding in findings:
         try:
             result = es.index(
@@ -114,5 +101,3 @@ if __name__ == '__main__':
             logger.exception(e)
         logger.info(result)
         i += 1
-
-
