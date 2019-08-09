@@ -1,0 +1,1 @@
+python RegisterPainlessUpdateScript.py

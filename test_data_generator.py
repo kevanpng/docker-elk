@@ -34,7 +34,7 @@ es = Elasticsearch(
 def generate_code_scan_finding():
     action_uid = '097f97ff-0b61-4f0e-b41e-ba77bab7d651'
     task_uid = '0d762bea-968e-43d7-a50e-5a8439868688'
-    created_at = '2019-01-01 01:00:00'
+    created_at = '2019-01-01T01:00:00Z'
     target = 'https://github.com/kevanpng/code-repo1'
     findings_definition_description = 'webserver susceptible to xss'
     finding = {
@@ -51,7 +51,7 @@ def generate_code_scan_finding():
 def generate_web_scan_finding():
     action_uid = '66d26cdb-aa6f-4f3d-8593-d6d9694ad353'
     task_uid = '4afa0366-641b-4797-b77f-c56ee952147d'
-    created_at = '2019-01-01 01:00:00'
+    created_at = '2019-01-03T01:00:00Z'
     target = 'https://webserver1.com'
     findings_definition_description = 'port 443 is exposed'
     finding = {
@@ -68,7 +68,7 @@ def generate_web_scan_finding():
 def generate_cloud_scan_finding():
     action_uid = '9a833518-2fa3-4809-b913-9e3ec633b854'
     task_uid = 'a9613863-57f7-448b-86e0-168a7b5990d1'
-    created_at = '2019-01-01 01:00:00'
+    created_at = '2019-01-02T01:00:00Z'
     target = 'arn:aws:ec2:ap-southeast-1:12345678:WebServer1'
     findings_definition_description = 'port 443 is exposed'
     finding = {
@@ -89,7 +89,6 @@ if __name__ == '__main__':
     findings = [web_scan_finding, code_scan_finding, cloud_scan_finding]
     # send data to es
     i = 1
-    es.indices.create(index='findings', body=settings)
     for finding in findings:
         try:
             result = es.index(
