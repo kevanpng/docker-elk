@@ -1,3 +1,6 @@
+# actually i need to do a elasticsearch course.  and see what is the best practices. then i do a basic app using elasticsearch. then i do a event-centric index
+
+
 
 load the entire 1GB of findings into elastic search. no errors
 https://discuss.elastic.co/t/loading-many-big-json-files-into-elasticsearch/128078/13
